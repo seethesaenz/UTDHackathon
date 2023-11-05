@@ -1,10 +1,10 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { Doughnut } from 'vue-chartjs'
-import { Chart, ArcElement, Tooltip, Legend} from 'chart.js'
+import { Doughnut, Bar } from 'vue-chartjs'
+import { Chart, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js'
 
 
-Chart.register(ArcElement, Tooltip, Legend)
+Chart.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement)
 
 //csv id | grossMonthlyIncome | monthlyCreditCardPayment | carPayment | studentLoanPayment | appraisedValue | downPayment | loanAmount | monthlyMortgage | creditScore
 const accepted = ref(0)
@@ -47,8 +47,6 @@ const config = computed(() =>  ({
         'rgb(255, 99, 132)'
         ],
         hoverOffset: 4
-        
-
     }]
 }));
 
@@ -153,6 +151,9 @@ const processCSV = (str, delim = ',') => {
         </div>
         <div id = "chrt" v-if="fileUploaded">
             <Doughnut :data="config" :options="options" />
+        </div>
+        <div id = "chrt" v-if="fileUploaded">
+            <Bar :data="config" :options="{ ...options, plugins: { legend: { display: false } }}" />
         </div>
     </div>
 </template>
