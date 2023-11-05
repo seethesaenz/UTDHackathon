@@ -9,7 +9,7 @@ const showChat = ref(false);
 <template>
 
 
-  <Chat v-if="showChat" style="position: absolute; top: 60%; left: 70%; background-color: white; height: 200px; padding: 10px; border: 2px solid #1e78a6;"/>
+  <Chat v-if="showChat" style="position: fixed; right: 10px; bottom: 10px; background-color: white; height: 200px; padding: 10px; border: 2px solid #1e78a6;"/>
   <button v-if="!showChat" @click="showChat = true" class="chat-btn">
     <img alt="Chat" src="@/assets/robot.png" height="50" />
   </button>
@@ -74,9 +74,9 @@ const showChat = ref(false);
 
 <style scoped>
 .chat-btn {
-  position: absolute;
-  top: 80%;
-  left: 90%;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
   background-color: white;
   border: 3px solid #1e78a6;
   border-radius: 50%;
