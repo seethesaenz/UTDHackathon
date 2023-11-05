@@ -7,8 +7,6 @@ const showChat = ref(false);
 </script>
 
 <template>
-
-
   <Chat v-if="showChat" style="position: fixed; right: 10px; bottom: 10px; background-color: white; height: 200px; padding: 10px; border: 2px solid #1e78a6;"/>
   <button v-if="!showChat" @click="showChat = true" class="chat-btn">
     <img alt="Chat" src="@/assets/robot.png" height="50" />
@@ -100,6 +98,7 @@ footer {
   padding: 20px 200px;
   display: flex;
   gap: 20px;
+  margin-top: auto;
 }
 
 footer section {

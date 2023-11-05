@@ -107,8 +107,8 @@ function handleSubmit() {
 
         
         <div v-show="showCalculations">
-            <p v-if="approved">You are approved!</p>
-            <p v-else>You are not approved.</p>
+            <p class="approved" v-if="approved">You are approved!</p>
+            <p class="not-approved" v-else>You are not approved.</p>
 
             <p class="error" v-if="!ltvAcceptable">Your <a href="https://singlefamily.fanniemae.com/originating-underwriting/mortgage-products/97-loan-value-options">LTV</a> is too high.</p>
             <p class="error" v-if="!dtiAcceptable">Your <a href="https://yourhome.fanniemae.com/buy/why-understanding-debt-essential">DTI</a> is too high.</p>
@@ -116,7 +116,7 @@ function handleSubmit() {
             <p class="error" v-if="!creditScoreAcceptable">Your <a href="https://www.investopedia.com/terms/c/credit_score.asp">credit score</a> is too low.</p>
         </div>
 
-        <ConfettiExplosion style="position: absolute; top: 50%; left: 50%" v-if="showCalculations && approved" />
+        <ConfettiExplosion style="position: fixed; top: 50%; left: 50%" v-if="showCalculations && approved" />
 
         <!-- <div style="font-weight: bold;">
             <p>Loan to Value: {{ ltv }}</p>
@@ -127,6 +127,30 @@ function handleSubmit() {
 </template>
 
 <style scoped>
+.not-approved {
+    color : #721c24;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #f5c6cb;
+}
+
+.approved {
+    color : #155724;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+    background-color: #d4edda;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #c3e6cb;
+}
+
 body {
     max-width: 800px;
     margin: 0 auto;
