@@ -28,7 +28,7 @@ const fedti = computed(() => {
 })
 
 const ltvAcceptable = computed(() => {
-    return ltv.value <= 95
+    return ltv.value <= 0.95
 })
 
 const dtiAcceptable = computed(() => {
