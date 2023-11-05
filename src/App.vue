@@ -82,6 +82,7 @@ const showChat = ref(false);
   border-radius: 50%;
   padding: 10px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .chat-btn:hover {
@@ -100,6 +101,11 @@ footer {
   padding: 20px 200px;
   display: flex;
   gap: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
 }
 
 footer section {

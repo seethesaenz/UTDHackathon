@@ -12,6 +12,7 @@ const deniedByLTV = ref(0)
 const deniedByDTI = ref(0)
 const deniedByCredit = ref(0)
 const fileUploaded = ref(false)
+const fileInput = ref(null)
 
 
 const options = {
@@ -51,6 +52,11 @@ const config = computed(() =>  ({
     }]
 }));
 
+function onFileDrop(e) {
+    e.preventDefault()
+    onFileChange({ target: { files: e.dataTransfer.files }})
+}
+
 function onFileChange(e){
     const file = e.target.files[0]
     if (!file) return
@@ -62,7 +68,7 @@ function onFileChange(e){
         deniedByLTV.value = 0
         deniedByDTI.value = 0
         deniedByCredit.value = 0
-        
+
         const str = e.target.result
         processCSV(str)
         fileUploaded.value = true
@@ -127,8 +133,9 @@ const processCSV = (str, delim = ',') => {
 <template>
     <div class="container">
         <h1>CSV Upload</h1>
-        <div class = "input-container">
-            <input type="file" id="csv" accept=".csv" @change="onFileChange" />
+        <div class = "input-container" @drop="onFileDrop" @dragover.prevent>
+            <input type="file" id="csv" accept=".csv" @change="onFileChange" ref="fileInput" />
+            <label for="csv">Drag and drop a CSV file here or click to upload.</label>
         </div>
         <div class = "table-container" v-if="fileUploaded">
             <table id = "tbl">
@@ -187,12 +194,24 @@ table {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 2px dashed #aaa;
     padding-bottom: 20px;
-    padding-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.input-container:hover {
+    border-color: #777;
+    background-color: #777;
 }
 #chrt {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 600px;
+}
+input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
 }
 </style>
