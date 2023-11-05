@@ -105,8 +105,6 @@ const processCSV = (str, delim = ',') => {
         const fedtiAcceptable = fedti <= 0.28
         const creditScoreAcceptable = creditScore >= 640
 
-
-
         if(!ltvAcceptable){
             deniedByLTV.value++
         }

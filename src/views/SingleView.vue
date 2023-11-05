@@ -51,6 +51,41 @@ function handleSubmit() {
     showCalculations.value = true
 }
 
+const suggestions = computed(() => {
+    // check which inputs are causing the issue
+    const suggestions = []
+
+    const monthlyCarPaymentAcceptable = monthlyCarPayment.value <= 0.1 * grossMonthlyIncome.value
+    const studentLoanPaymentAcceptable = studentLoanPayment.value <= 0.15 * grossMonthlyIncome.value
+    const monthlyMortgagePaymentAcceptable = monthlyMortgagePayment.value <= 0.28 * grossMonthlyIncome.value
+    const monthlyCreditCardPaymentAcceptable = monthlyCreditCardPayment.value <= 0.1 * grossMonthlyIncome.value
+    const creditScoreAcceptable = creditScore.value >= 640
+
+    if (!monthlyCarPaymentAcceptable) {
+        suggestions.push(`It looks like your monthly car payment is a bit high. A good rule of thumb is to keep your monthly car payment below 10% of your gross monthly income ($${0.1 * grossMonthlyIncome.value}).`)
+    }
+
+    if (!studentLoanPaymentAcceptable) {
+        // say impact on DTI and how to fix
+        suggestions.push(`Your student loan payment is a bit high. This is impacting your DTI (currently ${dti.value * 100}%). Maybe look into other factors of your DTI to see if you can lower it <a href="https://yourhome.fanniemae.com/buy/why-understanding-debt-essential">here</a>.`)
+    }
+
+    if (!monthlyMortgagePaymentAcceptable) {
+        suggestions.push(`Your monthly mortgage payment is a bit high. A good rule of thumb is to keep your monthly mortgage payment below 28% of your gross monthly income ($${0.28 * grossMonthlyIncome.value}).`)
+    }
+
+    if (!monthlyCreditCardPaymentAcceptable) {
+        suggestions.push(`Your monthly credit card payment is a bit high. A good rule of thumb is to keep your monthly credit card payment below 10% of your gross monthly income ($${0.1 * grossMonthlyIncome.value}).`)
+    }
+
+    if (!creditScoreAcceptable) {
+        suggestions.push(`Your credit score could use some work, see <a href="https://www.investopedia.com/terms/c/credit_score.asp">here</a> for tips on improving your credit score.`)
+    }
+
+
+    return suggestions
+})
+
 </script>
 
 <template>
@@ -114,6 +149,13 @@ function handleSubmit() {
             <p class="error" v-if="!dtiAcceptable">Your <a href="https://yourhome.fanniemae.com/buy/why-understanding-debt-essential">DTI</a> is too high.</p>
             <p class="error" v-if="!fedtiAcceptable">Your <a href="https://www.investopedia.com/terms/f/front-end-debt-to-income-ratio.asp#:~:text=What%20Is%20Front%2DEnd%20Debt,2">Front End DTI</a> is too high.</p>
             <p class="error" v-if="!creditScoreAcceptable">Your <a href="https://www.investopedia.com/terms/c/credit_score.asp">credit score</a> is too low.</p>
+
+            <div class="info">
+                <p v-if="suggestions.length > 0">Here are some suggestions:</p>
+                <ul>
+                    <li v-for="suggestion in suggestions" v-html="suggestion"></li>
+                </ul>
+            </div>
         </div>
 
         <ConfettiExplosion style="position: fixed; top: 50%; left: 50%" v-if="showCalculations && approved" />
@@ -127,6 +169,13 @@ function handleSubmit() {
 </template>
 
 <style scoped>
+div.info {
+    margin-top: 10px;
+    background-color: #d4edda;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 .not-approved {
     color : #721c24;
     font-weight: bold;
