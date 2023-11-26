@@ -1,29 +1,37 @@
-# fannie-slay
+Check out our Demo!
+https://youtu.be/oo2kcLtndHc
 
-This template should help get you started developing with Vue 3 in Vite.
+Inspiration: 
+For a first-time homebuyer, navigating the process, filled with new terminology, and seeing if you qualify for a loan is oftentimes confusing and difficult.
 
-## Recommended IDE Setup
+If they don’t qualify, without knowing why and what they can do about it, many people are left stuck.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Solution:
+Leveraging AI technologies, our Prospective Homebuyer Portal guides the user through the process of applying for a mortgage, explaining the steps as well as offering custom solutions tailored specifically to the customer’s needs.
 
-## Customize configuration
+In addition, the portal allows for an innovative dashboard, created from a custom .csv file uploaded by the user. This dashboard automatically calculates and generates visualizations for the most important points.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+An integrated chatbot designed to answer questions related to the topic helps address customer concerns that is not done elsewhere.
 
-## Project Setup
+What's next for FannieSlae?
 
-```sh
-pnpm install
-```
+More opportunity to integrate the AI into the website, such as...
+- Forecast loan and home prices
+- Recommendation Engine
+- Content Generation
+- Auto-Fill forms to streamline the form-filling process
+- Expand real estate investments range from commercial properties to residential rental units.
 
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Compile and Minify for Production
-
-```sh
-pnpm build
-```
+Built With:
+canva
+css
+discord
+godaddy
+google-cloud
+html5
+javascript
+mspaint
+python
+scikit-learn
+visual-studio
+vue
